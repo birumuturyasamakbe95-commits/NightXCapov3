@@ -2686,7 +2686,7 @@ function M.setupHeadIndicator(char)
     discordLbl.Size = UDim2.new(1, 0, 0, 28)
     discordLbl.Position = UDim2.new(0, 0, 0, 0)
     discordLbl.BackgroundTransparency = 1
-    discordLbl.Text = "Capo X Nighthub V3"
+    discordLbl.Text = "discord.gg/3gqtyYgB7"
     discordLbl.TextColor3 = Color3.fromRGB(255, 255, 255)
     discordLbl.Font = Enum.Font.GothamBold
     discordLbl.TextSize = 18
@@ -2765,7 +2765,7 @@ function M.updateHeadTheme()
         for _, c in ipairs(M.headIndicator.discord:GetChildren()) do
             if c:IsA("UIGradient") or c:IsA("UIStroke") then pcall(function() c:Destroy() end) end
         end
-        M.headIndicator.discord.Text = "Capo X Nighthub V3"
+        M.headIndicator.discord.Text = "discord.gg/3gqtyYgB7"
         M.headIndicator.discord.TextColor3 = Color3.fromRGB(255, 255, 255)
         M.headIndicator.discord.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
         M.headIndicator.discord.TextStrokeTransparency = 0.35
@@ -2908,7 +2908,7 @@ function M.buildNewStatusUI()
     veil.Parent = frame
     Instance.new("UICorner", veil).CornerRadius = UDim.new(0, 4)
 
-    -- VH logo left (large, own blue outline; V blue + H white)
+    -- CN logo left (large, own blue outline; V blue + H white)
     local logoWrap = Instance.new("Frame", frame)
     logoWrap.Name = "LogoWrap"
     logoWrap.Size = UDim2.new(0, 40, 0, 40)
@@ -2926,11 +2926,11 @@ function M.buildNewStatusUI()
     end
 
     local logoV = Instance.new("TextLabel", logoWrap)
-    logoV.Name = "LogoV"
+    logoV.Name = "LogoC"
     logoV.Size = UDim2.new(0.5, 0, 1, 0)
     logoV.Position = UDim2.new(0, 2, 0, 0)
     logoV.BackgroundTransparency = 1
-    logoV.Text = "V"
+    logoV.Text = "C"
     logoV.TextColor3 = Color3.fromRGB(200, 200, 210)
     logoV.Font = Enum.Font.GothamBlack
     logoV.TextSize = 20
@@ -2938,11 +2938,11 @@ function M.buildNewStatusUI()
     logoV.ZIndex = 7
 
     local logoH = Instance.new("TextLabel", logoWrap)
-    logoH.Name = "LogoH"
+    logoH.Name = "LogoN"
     logoH.Size = UDim2.new(0.5, 0, 1, 0)
     logoH.Position = UDim2.new(0.5, -2, 0, 0)
     logoH.BackgroundTransparency = 1
-    logoH.Text = "H"
+    logoH.Text = "N"
     logoH.TextColor3 = Color3.fromRGB(245, 248, 255)
     logoH.Font = Enum.Font.GothamBlack
     logoH.TextSize = 20
@@ -9075,7 +9075,7 @@ function M.buildMobileButtons()
         btn:SetAttribute("BtnKey", key)
         btn:SetAttribute("MB_On", false)
         btn.Parent = mobileButtonsFrame
-        Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 4)  -- square buttons
+        Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 18)  -- Capo V2 rounded style
         local stroke = Instance.new("UIStroke")
         stroke.Name = "BtnStroke"
         stroke.Color = OFF_STROKE
@@ -10309,7 +10309,7 @@ function M.applyChromeTheme()
         end
         local oldMini = hdr:FindFirstChild("MiniLogo")
         if oldMini then pcall(function() oldMini:Destroy() end) end
-        local vh = hdr:FindFirstChild("VHLogo") or M.headerMiniLogo
+        local vh = hdr:FindFirstChild("CNLogo") or hdr:FindFirstChild("VHLogo") or M.headerMiniLogo
         if vh and vh.Parent then
             pcall(function()
                 vh.Visible = true
@@ -10320,13 +10320,15 @@ function M.applyChromeTheme()
                         pcall(function() c:Destroy() end)
                     end
                 end
-                local vLbl = vh:FindFirstChild("LogoV")
+                local vLbl = vh:FindFirstChild("LogoC") or vh:FindFirstChild("LogoV")
                 if vLbl then
+                    vLbl.Text = "C"
                     vLbl.TextColor3 = Color3.fromRGB(200, 200, 210)
                     vLbl.TextSize = 28
                 end
-                local hLbl = vh:FindFirstChild("LogoH")
+                local hLbl = vh:FindFirstChild("LogoN") or vh:FindFirstChild("LogoH")
                 if hLbl then
+                    hLbl.Text = "N"
                     hLbl.TextColor3 = Color3.fromRGB(255, 255, 255)
                     hLbl.TextSize = 28
                 end
@@ -12857,21 +12859,21 @@ end
     end
 
     local logo = Instance.new("Frame")
-    logo.Name = "VHLogo"
+    logo.Name = "CNLogo"
     logo.Size = UDim2.new(0, 48, 0, 48)
     logo.Position = UDim2.new(0, 6, 0, 8)
     logo.BackgroundTransparency = 1
     logo.BorderSizePixel = 0
     logo.ZIndex = 51
     logo.Parent = Header
-    -- no square contour / no stroke — only VH letters
+    -- no square contour / no stroke — only CN letters
 
     local logoV = Instance.new("TextLabel", logo)
-    logoV.Name = "LogoV"
+    logoV.Name = "LogoC"
     logoV.Size = UDim2.new(0.52, 0, 1, 0)
     logoV.Position = UDim2.new(0, 0, 0, 0)
     logoV.BackgroundTransparency = 1
-    logoV.Text = "V"
+    logoV.Text = "C"
     logoV.TextColor3 = Color3.fromRGB(200, 200, 210)
     logoV.Font = Enum.Font.GothamBlack
     logoV.TextSize = 28
@@ -12881,11 +12883,11 @@ end
     logoV.ZIndex = 53
 
     local logoH = Instance.new("TextLabel", logo)
-    logoH.Name = "LogoH"
+    logoH.Name = "LogoN"
     logoH.Size = UDim2.new(0.52, 0, 1, 0)
     logoH.Position = UDim2.new(0.46, 0, 0, 0)
     logoH.BackgroundTransparency = 1
-    logoH.Text = "H"
+    logoH.Text = "N"
     logoH.TextColor3 = Color3.fromRGB(255, 255, 255)
     logoH.Font = Enum.Font.GothamBlack
     logoH.TextSize = 28
@@ -12925,7 +12927,7 @@ end
     discordLbl.Position = UDim2.new(0, 58, 0, 34)
     discordLbl.Size = UDim2.new(1, -110, 0, 20)
     discordLbl.BackgroundTransparency = 1
-    discordLbl.Text = "Capo X Nighthub V3"
+    discordLbl.Text = "discord.gg/3gqtyYgB7"
     discordLbl.TextColor3 = Color3.fromRGB(255, 255, 255)
     discordLbl.TextTransparency = 0
     discordLbl.TextStrokeTransparency = 1
@@ -12952,7 +12954,7 @@ end
         end
         if discordLbl and discordLbl.Parent then
             discordLbl.Visible = true
-            discordLbl.Text = "Capo X Nighthub V3"
+            discordLbl.Text = "discord.gg/3gqtyYgB7"
             discordLbl.TextColor3 = Color3.fromRGB(255, 255, 255)
             discordLbl.TextTransparency = 0
             discordLbl.TextSize = 14
